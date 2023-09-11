@@ -9,4 +9,3 @@ def without_one(vec):
         tmp *= vec[i + 1]
         res[i] *= tmp
     return res
-

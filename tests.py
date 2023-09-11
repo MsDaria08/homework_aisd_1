@@ -5,6 +5,7 @@ from task3 import sum_with_factorial
 from task4 import skipped_num
 from task5 import is_or_not
 from task6 import sudoku, printt
+from task7 import without_one
 
 class tests(unittest.TestCase):
     def test_fib(self):
@@ -32,7 +33,7 @@ class tests(unittest.TestCase):
         self.assertEqual(is_or_not(matrix, 90), 'YES')
         self.assertEqual(is_or_not(matrix, 10), 'YES')
         self.assertEqual(is_or_not(matrix, 7), 'YES')
-        #self.assertEqual(is_or_not(matrix, 12), 'YES')
+        self.assertEqual(is_or_not(matrix, 12), 'YES')
         self.assertEqual(is_or_not(matrix, 4), 'YES')
         self.assertEqual(is_or_not(matrix, 35), None)
 
@@ -60,3 +61,7 @@ class tests(unittest.TestCase):
                   [7, 6, 9, 2, 1, 4, 8, 3, 5], [1, 8, 5, 7, 3, 6, 4, 9, 2], [4, 2, 3, 8, 9, 5, 7, 1, 6]]
         printt(matrix1)
         self.assertEqual(sudoku(matrix1, 3), 'error!!!')
+
+    def test_without_one(self):
+        vec = [2, 3, 4, 5, 10]
+        self.assertEqual(without_one(vec), [600, 400, 300, 240, 120])
