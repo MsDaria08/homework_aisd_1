@@ -1,5 +1,5 @@
 import unittest
-from task1 import fib1, fib_recursive
+from task1 import fib1, fib_recursive, fib_matrix
 from task2 import counter
 from task3 import sum_with_factorial
 from task4 import skipped_num
@@ -21,6 +21,12 @@ class tests(unittest.TestCase):
         self.assertEqual(fib_recursive(2), 1)
         self.assertEqual(fib_recursive(6), 8)
 
+        self.assertEqual(fib_matrix(3), 2)
+        self.assertEqual(fib_matrix(0), 0)
+        self.assertEqual(fib_matrix(1), 1)
+        self.assertEqual(fib_matrix(2), 1)
+        self.assertEqual(fib_matrix(6), 8)
+
     def test_counter(self):
         vec = [63, 55, 11, 10, 10, 9, 1]
         self.assertEqual(counter(vec), 6)
@@ -28,14 +34,24 @@ class tests(unittest.TestCase):
         self.assertEqual(counter(vec1), 6)
 
     def test_is_or_not(self):
-        matrix = [[0, 2, 3, 10, 15], [2, 4, 11, 16, 17], [3, 7, 12, 17, 30], [6, 7, 30, 60, 85], [7, 13, 31, 75, 90]]
+        matrix = [[0, 2, 3, 10, 15],
+                  [2, 4, 11, 16, 17],
+                  [3, 7, 12, 17, 30],
+                  [6, 7, 30, 60, 85],
+                  [7, 13, 31, 75, 90]]
         self.assertEqual(is_or_not(matrix, 0), 'YES')
         self.assertEqual(is_or_not(matrix, 90), 'YES')
         self.assertEqual(is_or_not(matrix, 10), 'YES')
         self.assertEqual(is_or_not(matrix, 7), 'YES')
         self.assertEqual(is_or_not(matrix, 12), 'YES')
         self.assertEqual(is_or_not(matrix, 4), 'YES')
-        self.assertEqual(is_or_not(matrix, 35), None)
+        self.assertEqual(is_or_not(matrix, 35), 'NO')
+        matrix1 = [[1, 2, 3, 4, 5],
+                   [100, 200, 300, 400, 500],
+                   [600, 700, 800, 900, 1000],
+                   [1100, 1200, 1300, 1400, 1500],
+                   [1600, 1700, 1800, 1900, 2000]]
+        self.assertEqual(is_or_not(matrix1, 1600), 'YES')
 
     def test_sum_with_factorial(self):
         self.assertEqual(sum_with_factorial(1), 1)
@@ -53,15 +69,15 @@ class tests(unittest.TestCase):
         matrix = [[2, 3, 8, 9, 6, 5, 7, 1, 4], [7, 5, 9, 4, 1, 3, 6, 8, 2], [4, 1, 6, 2, 7, 8, 9, 5, 3],
                   [9, 4, 5, 1, 3, 6, 2, 7, 8], [6, 8, 7, 5, 2, 4, 1, 3, 9], [3, 2, 1, 8, 9, 7, 4, 6, 5],
                   [1, 6, 2, 3, 5, 9, 8, 4, 7], [5, 7, 4, 6, 8, 2, 3, 9, 1], [8, 9, 3, 7, 4, 1, 5, 2, 6]]
-        printt(matrix)
-        print()
         self.assertEqual(sudoku(matrix, 3), 1)
         matrix1 =[[3, 7, 4, 9, 6, 3, 1, 5, 8], [3, 5, 1, 4, 8, 2, 6, 7, 9], [8, 9, 6, 5, 7 , 1, 2, 4, 3],
                   [9, 4, 2, 1, 5, 8, 3, 6, 7], [6, 1, 7, 3, 2, 9, 5, 8, 4], [5, 3, 8, 6, 4, 7, 9, 2, 1],
                   [7, 6, 9, 2, 1, 4, 8, 3, 5], [1, 8, 5, 7, 3, 6, 4, 9, 2], [4, 2, 3, 8, 9, 5, 7, 1, 6]]
-        printt(matrix1)
         self.assertEqual(sudoku(matrix1, 3), 'error!!!')
-
+        matrix2 = [[5, 5, 5, 5, 5, 5, 5, 5, 5], [5, 5, 5, 5, 5, 5, 5, 5, 5], [5, 5, 5, 5, 5, 5, 5, 5, 5],
+                   [5, 5, 5, 5, 5, 5, 5, 5, 5], [5, 5, 5, 5, 5, 5, 5, 5, 5], [5, 5, 5, 5, 5, 5, 5, 5, 5],
+                   [5, 5, 5, 5, 5, 5, 5, 5, 5], [5, 5, 5, 5, 5, 5, 5, 5, 5], [5, 5, 5, 5, 5, 5, 5, 5, 5]]
+        self.assertEqual(sudoku(matrix2, 3), 'error!!!')
     def test_without_one(self):
         vec = [2, 3, 4, 5, 10]
         self.assertEqual(without_one(vec), [600, 400, 300, 240, 120])
